@@ -71,6 +71,10 @@ export default function DriversSection({
     return null;
   };
 
+  console.log("drivers", drivers);
+
+  //
+
   return (
     <div className="bg-gradient-to-br from-dark-light to-dark rounded-xl border border-dark-lighter p-6 animate-fade-in">
       <div className="flex items-center justify-between mb-6">
