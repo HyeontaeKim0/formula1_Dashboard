@@ -32,6 +32,8 @@ export default function Podium() {
     null
   );
 
+  // 최근 레이스 데이터
+
   useEffect(() => {
     const fetchLastestMeeting = async () => {
       const lastestMeeting = await getLastestMeeting();
@@ -40,6 +42,8 @@ export default function Podium() {
     };
     fetchLastestMeeting();
   }, []);
+
+  // 최근 포디움 드라이버 데이터
 
   useEffect(() => {
     const fetchSessionResults = async () => {

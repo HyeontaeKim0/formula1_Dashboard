@@ -3,7 +3,7 @@
 import { Trophy, Medal, Users } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-
+import NetherlandsFlag from "@/assets/img/flag/netherland.svg";
 import type { Driver, DriversSectionProps } from "@/lib/types/types";
 
 export type { Driver } from "@/lib/types/types";
@@ -95,7 +95,20 @@ export default function DriversSection({
                 style={{
                   background: `radial-gradient(circle at center, ${driver.teamColor}15 0%, transparent 70%)`,
                 }}
-              ></div>
+              >
+                <Image
+                  src={NetherlandsFlag}
+                  alt="Netherlands Flag"
+                  fill
+                  className="object-contain"
+                  sizes="24px"
+                  unoptimized
+                  style={{
+                    opacity: "0.4",
+                    marginTop: "-100px",
+                  }}
+                />
+              </div>
 
               {/* 순위 배지 */}
               {/* {getPositionBadge(driver.position)} */}
