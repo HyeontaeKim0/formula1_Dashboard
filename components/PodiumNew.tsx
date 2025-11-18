@@ -174,17 +174,17 @@ export default function Podium() {
   const getTeamName = (driver_number: number) => {
     switch (driver_number) {
       case 1:
-        return "레드불";
+        return "RedBull";
       case 22:
-        return "레드불";
+        return "RedBull";
       case 12:
-        return "메르세데스";
+        return "Mercedes";
       case 63:
-        return "메르세데스";
+        return "Mercedes";
       case 4:
-        return "맥라렌";
+        return "McLaren";
       case 81:
-        return "맥라렌";
+        return "McLaren";
       case 55:
         return "윌리엄스";
       case 23:
@@ -517,7 +517,7 @@ export default function Podium() {
                               {driver.teamLogoUrl && (
                                 <div
                                   className={`relative w-[50px] h-[50px] flex-shrink-0  ${
-                                    driver.team === "맥라렌"
+                                    driver.team === "McLaren"
                                       ? "drop-shadow-[0_0_10px_rgba(0,0,0,0.4)]"
                                       : ""
                                   }`}
@@ -527,7 +527,7 @@ export default function Podium() {
                                     alt={driver.team}
                                     fill
                                     className={`object-contain ${
-                                      driver.team === "맥라렌"
+                                      driver.team === "McLaren"
                                         ? "scale-125"
                                         : "scale-100"
                                     }`}
