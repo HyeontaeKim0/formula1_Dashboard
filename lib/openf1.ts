@@ -38,8 +38,8 @@ import Niko from "../assets/img/driverProfile/KickSauber/niko.webp";
 import Gabriel from "../assets/img/driverProfile/KickSauber/gabriel.webp";
 import KickSauberLogo from "../assets/img/teamLogo/Kick.svg";
 // Racing bulls
-import Isack from "../assets/img/driverProfile/Racingbulls/isack.webp";
-import Liam from "../assets/img/driverProfile/Racingbulls/lowson.webp";
+import Isack from "../assets/img/driverProfile/RacingBulls/isack.webp";
+import Liam from "../assets/img/driverProfile/RacingBulls/lowson.webp";
 import RacingBullsLogo from "../assets/img/teamLogo/RacingBulls.svg";
 
 import type { Driver, OpenF1Driver } from "@/lib/types/types";
