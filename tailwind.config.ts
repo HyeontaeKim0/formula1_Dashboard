@@ -10,29 +10,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // 메인 액센트 색상 (Electric Cyan/Blue)
+        // 메인 액센트 색상 (F1 레드)
         primary: {
-          DEFAULT: "#00D4FF",
-          light: "#06E7FF",
-          dark: "#00B8E6",
-          glow: "#00F5FF",
+          DEFAULT: "#FF3B30",
+          light: "#FF5C52",
+          dark: "#E6392E",
+          glow: "#FF6B5F",
         },
-        // 보조 액센트 색상 (Neon Green)
+        // 보조 액센트 색상 (화이트)
         secondary: {
-          DEFAULT: "#06FFA5",
-          light: "#00FF88",
-          dark: "#00E68F",
+          DEFAULT: "#FFFFFF",
+          light: "#FFFFFF",
+          dark: "#F5F5F5",
         },
-        // 배경 색상 (Deep Slate)
+        // 배경 색상 (하얀색 계열)
         dark: {
-          DEFAULT: "#0F172A",
-          light: "#1E293B",
-          lighter: "#334155",
+          DEFAULT: "#FFFFFF", // White
+          light: "#F5F5F5", // Light Gray
+          lighter: "#E5E5E5", // Lighter Gray
         },
         // 기존 호환성을 위한 별칭
-        "f1-red": "#00D4FF", // primary로 매핑
-        "f1-black": "#0F172A", // dark로 매핑
-        "f1-gray": "#1E293B", // dark-light로 매핑
+        "f1-red": "#FF3B30", // primary로 매핑
+        "f1-black": "#0A0A0A", // dark로 매핑
+        "f1-gray": "#1A1A1A", // dark-light로 매핑
       },
     },
   },
