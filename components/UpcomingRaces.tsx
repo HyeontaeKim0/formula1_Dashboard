@@ -4,7 +4,7 @@ import { Calendar, Clock, Flag, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import { getNextRaces } from "@/lib/nextRacesApi";
-import type { NextRacesResponse } from "@/lib/nextRacesApi";
+import type { NextRacesResponse, NextRaceItem } from "@/lib/nextRacesApi";
 
 import { GiF1Car } from "react-icons/gi";
 
@@ -50,19 +50,20 @@ export default function UpcomingRaces() {
   //   })
   // );
 
-  console.log("upcomingRacesApi", upcomingRacesApi?.race[0].schedule?.fp1);
+  console.log("upcomingRacesApi", upcomingRacesApi?.race[0].schedule);
 
   // 목데이터
 
-  const upcomingRaces: RaceEvent[] = [
-    {
-      name: "Brazil Grand Prix",
-      date: "2025-11-20",
-      time: "10:00:00",
-      daysUntil: 3,
-      type: "race",
-    },
-  ];
+  const upcomingRaces: NextRaceItem[] =
+    upcomingRacesApi?.race.map((race: NextRaceItem) => ({
+      raceId: race.raceId,
+      raceName: race.raceName,
+      date: race.date,
+      time: race.time,
+      circuit: race.circuit,
+      race: race.race,
+      country: race.country,
+    })) || [];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -128,38 +129,41 @@ export default function UpcomingRaces() {
               <div className="relative p-5 flex items-center justify-between">
                 <div className="flex items-center space-x-4 flex-1">
                   <div
-                    className={`flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${getTypeColor(
-                      race.type
-                    )} shadow-lg border border-white/10 relative overflow-hidden`}
+                    className={`flex flex-col items-center justify-center w-16 h-16 rounded-xl  shadow-lg border border-white/10 relative overflow-hidden`}
+                    style={{
+                      backgroundColor: race.schedule?.fp1?.date
+                        ? "green"
+                        : "red",
+                    }}
                   >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative z-10 flex flex-col items-center">
                       <span className="text-xs font-extrabold text-white mb-0.5">
-                        D-{race.daysUntil}
+                        D-
+                        {Math.ceil(
+                          (new Date(race.date).getTime() -
+                            new Date().getTime()) /
+                            (1000 * 60 * 60 * 24)
+                        )}
                       </span>
                       <span className="text-[10px] text-white/80 font-medium">
-                        {race.daysUntil}일 후
+                        {Math.ceil(
+                          (new Date(race.date).getTime() -
+                            new Date().getTime()) /
+                            (1000 * 60 * 60 * 24)
+                        )}
+                        일 후
                       </span>
                     </div>
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-1">
-                      {getTypeIcon(race.type)}
+                      {getTypeIcon(
+                        race.schedule?.fp1?.date as RaceEvent["type"]
+                      )}
                       <h3 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">
-                        {race.name}
+                        {race.raceName}
                       </h3>
-                    </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-600">
-                      <div className="flex items-center space-x-1.5">
-                        <Calendar size={14} />
-                        <span className="font-medium">{race.date}</span>
-                      </div>
-                      <div className="flex items-center space-x-1.5">
-                        <Clock size={14} />
-                        <span className="font-mono font-medium">
-                          {race.time}
-                        </span>
-                      </div>
                     </div>
                   </div>
                 </div>
