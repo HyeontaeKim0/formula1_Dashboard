@@ -180,7 +180,7 @@ export const getTeamColor = (driver_number: number) => {
     // Haas
     case 31:
     case 87:
-      return "#ED1C24";
+      return "gray";
     // Kick Sauber
     case 5:
     case 27:
@@ -195,6 +195,31 @@ export const getTeamColor = (driver_number: number) => {
       return "#1E41FF";
     default:
       return "#1E293B";
+  }
+};
+
+export const getConstructorTeamColor = (team_name: string) => {
+  switch (team_name) {
+    case "Red Bull Racing":
+      return "#1E41FF";
+    case "Mercedes Formula 1 Team":
+      return "#00D2BE";
+    case "McLaren Formula 1 Team":
+      return "#FF8000";
+    case "Scuderia Ferrari":
+      return "#DC143C";
+    case "Williams Racing":
+      return "#005AFF";
+    case "Aston Martin F1 Team":
+      return "#006F62";
+    case "Haas F1 Team":
+      return "gray";
+    case "Sauber F1 Team":
+      return "#52C41A";
+    case "Alpine F1 Team":
+      return "#FF009C";
+    case "RB F1 Team":
+      return "#1E41FF";
   }
 };
 
@@ -233,6 +258,33 @@ export const getTeamLogoUrl = (driver_number: number) => {
       return RacingBullsLogo.src;
     default:
       return "";
+  }
+};
+
+export const getConstructorTeamName = (team_name: string) => {
+  switch (team_name) {
+    case "Red Bull Racing":
+      return "레드불";
+    case "Mercedes Formula 1 Team":
+      return "메르세데스";
+    case "McLaren Formula 1 Team":
+      return "맥라렌";
+    case "Scuderia Ferrari":
+      return "페라리";
+    case "Williams Racing":
+      return "윌리엄스";
+    case "Aston Martin F1 Team":
+      return "에스턴 마틴";
+    case "Haas F1 Team":
+      return "하스";
+    case "Sauber F1 Team":
+      return "킥 자우버";
+    case "Alpine F1 Team":
+      return "알핀";
+    case "RB F1 Team":
+      return "레이싱 불스";
+    default:
+      return team_name;
   }
 };
 
