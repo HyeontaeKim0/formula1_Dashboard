@@ -1,0 +1,48 @@
+"use client";
+
+import { Clock, ArrowRight } from "lucide-react";
+import type { NextRacesResponse } from "@/lib/nextRacesApi";
+import { getCircuitImageUrl } from "@/lib/utils/driverUtils";
+import Image from "next/image";
+export default function CircuitSection({
+  upcomingRacesApi,
+}: {
+  upcomingRacesApi: NextRacesResponse;
+}) {
+  console.log("upcomingRacesApi", upcomingRacesApi?.race[0].circuit);
+
+  return (
+    <div className="relative w-full">
+      {/* 메인 컨텐츠 */}
+      <div className="mt-[0px] relative overflow-hidden rounded-3xl bg-white p-6 shadow-lg border border-gray-200">
+        <p className="text-sm text-gray-600">
+          {upcomingRacesApi?.race[0].circuit.circuitName}
+        </p>
+        <div className="w-full h-full flex items-center justify-center mt-10">
+          <Image
+            src={getCircuitImageUrl(
+              upcomingRacesApi?.race[0].circuit.circuitId as string
+            )}
+            alt={upcomingRacesApi?.race[0].circuit.circuitName}
+            width={400}
+            height={400}
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="mt-10 space-y-2">
+          <p className="text-sm text-gray-600">
+            서킷 길이 : {upcomingRacesApi?.race[0].circuit.circuitLength}
+          </p>
+          <p className="text-sm text-gray-600">
+            코너 수 : {upcomingRacesApi?.race[0].circuit.corners}
+          </p>
+          <p className="text-sm text-gray-600">
+            패스티스트 랩 :{" "}
+            {upcomingRacesApi?.race[0].circuit.fastestLapDriverId} /{" "}
+            {upcomingRacesApi?.race[0].circuit.fastestLapYear}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -25,6 +25,14 @@ export interface NextRaceItem {
 export interface Circuit {
   country: string;
   city: string;
+  circuitId: string;
+  circuitName: string;
+  circuitLength: string;
+  lapRecord: string;
+  firstParticipationYear: number;
+  corners: number;
+  fastestLapDriverId: string;
+  fastestLapYear: number;
 }
 
 export interface NextRacesResponse {

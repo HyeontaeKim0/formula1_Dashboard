@@ -3,12 +3,12 @@
 import { Calendar, Clock, Flag, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 
-import { getNextRaces } from "@/lib/nextRacesApi";
 import type { NextRacesResponse } from "@/lib/nextRacesApi";
 
-import RaceTypeList from "./components/raceType/RaceTypeList";
+import RaceTypeList from "../components/raceType/RaceTypeList";
 
 import type { RaceEvent } from "@/lib/types/types";
+import HeaderSection from "../components/header/HeaderSection";
 
 const getTypeColor = (type: RaceEvent["type"]) => {
   switch (type) {
@@ -35,14 +35,11 @@ const getTypeIcon = (type: RaceEvent["type"]) => {
   }
 };
 
-export default function UpcomingRaces() {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [upcomingRacesApi, setUpcomingRacesApi] =
-    useState<NextRacesResponse | null>(null);
-
-  // 서킷
-  // console.log("upcomingRacesApi", upcomingRacesApi?.race[0].circuit.city);
-
+export default function UpcomingRacesType({
+  upcomingRacesApi,
+}: {
+  upcomingRacesApi: NextRacesResponse;
+}) {
   const freePractice1: RaceEvent[] =
     upcomingRacesApi?.race.map((race: any) => ({
       name: race.name,
@@ -106,55 +103,10 @@ export default function UpcomingRaces() {
       type: "sprintQualy",
     })) || [];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const fetchNextRaces = async () => {
-      try {
-        const nextRaces = await getNextRaces();
-
-        setUpcomingRacesApi(nextRaces);
-      } catch (error) {
-        console.error("Failed to fetch next races:", error);
-      }
-    };
-    fetchNextRaces();
-  }, []);
-
   return (
     <div>
       <div className="relative w-full">
         {/* 헤더 섹션 */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm">
-              <Calendar className="text-primary" size={24} />
-            </div>
-            <div>
-              <h3 className="text-xl font-extrabold tracking-tight text-gray-900">
-                다가오는 레이스
-              </h3>
-              <p className="mt-1 text-sm font-medium text-gray-600">
-                {upcomingRacesApi?.race[0].circuit.city} ·{" "}
-                {upcomingRacesApi?.race[0].circuit.country} 그랑프리
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-100 px-3 py-2 rounded-xl border border-gray-200">
-            <Clock size={14} />
-            <span className="font-mono font-semibold">
-              {currentTime.toLocaleTimeString("ko-KR", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </span>
-          </div>
-        </div>
 
         <RaceTypeList
           freePractice1={freePractice1 || ([] as RaceEvent[])}

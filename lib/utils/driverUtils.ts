@@ -37,12 +37,15 @@ import FrancoColapinto from "@/assets/img/driverProfile/Alpine/franco.webp";
 import IsackHadjar from "@/assets/img/driverProfile/RacingBulls/isack.webp";
 import LiamLawson from "@/assets/img/driverProfile/RacingBulls/lowson.webp";
 
-import LusailCircuit from "@/assets/img/circuit/Lusail_circuit.svg";
+import LusailCircuit from "@/assets/img/circuit/Qatar_Circuit.avif";
+import YasMarinaCircuit from "@/assets/img/circuit/Abu_Dhabi_Circuit.avif";
 
 export const getCircuitImageUrl = (circuit_name: string) => {
   switch (circuit_name) {
-    case "Lusail":
+    case "lusail":
       return LusailCircuit.src;
+    case "yasMarina":
+      return YasMarinaCircuit.src;
     default:
       return "";
   }

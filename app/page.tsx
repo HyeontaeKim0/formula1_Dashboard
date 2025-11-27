@@ -1,12 +1,13 @@
 "use client";
 
-import UpcomingRaces from "@/components/upcomingRaces/UpcomingRaces";
+import UpcomingRacesType from "@/components/upcomingRaces/upcomingRacesType/UpcomingRacesType";
 import RaceResults from "@/components/raceResults/RaceResults";
 import ChampionshipStandings from "@/components/championshipStandings/ChampionshipStandings";
 import NewsSection from "@/components/newsSection/NewsSection";
 import Podium from "@/components/podiumSection/Podium";
 import PodiumNew from "@/components/podiumSection/PodiumNew";
-import CircuitSection from "@/components/circuitSection/CircuitSection";
+import CircuitSection from "@/components/upcomingRaces/components/circuit/CircuitSection";
+import UpcomingRacesSection from "@/components/upcomingRaces/UpcomingRacesSection";
 
 export default function Home() {
   return (
@@ -17,23 +18,10 @@ export default function Home() {
         <PodiumNew />
       </div>
 
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div
-          className="lg:col-span-2 animate-slide-up"
-          style={{ animationDelay: "0.1s" }}
-        >
-          <UpcomingRaces />
-        </div>
-        <div
-          className="animate-slide-in-right"
-          style={{ animationDelay: "0.2s" }}
-        >
-          <CircuitSection />
-        </div>
-      </div>
+      {/* 다가오는 레이스 섹션 */}
+      <UpcomingRacesSection />
 
-      {/* Results and Standings Grid */}
+      {/* 최근 레이스 결과 섹션 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div
           className="animate-slide-in-left mt-10"
