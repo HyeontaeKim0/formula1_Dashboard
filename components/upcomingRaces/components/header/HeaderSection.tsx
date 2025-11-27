@@ -30,14 +30,19 @@ export default function HeaderSection({
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-100 px-3 py-2 rounded-xl border border-gray-200">
-        <Clock size={14} />
-        <span className="font-mono font-semibold">
-          {currentTime.toLocaleTimeString("ko-KR", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-extrabold px-3 py-1.5 bg-primary/20 text-primary rounded-xl border border-primary/30">
+          {upcomingRacesApi?.round} 라운드
         </span>
+        <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-100 px-3 py-2 rounded-xl border border-gray-200">
+          <Clock size={14} />
+          <span className="font-mono font-semibold">
+            {currentTime.toLocaleTimeString("ko-KR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
       </div>
     </div>
   );
