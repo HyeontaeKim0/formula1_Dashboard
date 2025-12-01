@@ -229,6 +229,7 @@ export const getTeamColor = (driver_number: number) => {
   switch (driver_number) {
     // Red Bull
     case 1:
+    case 33:
     case 22:
       return "#1E41FF";
     // Mercedes
@@ -246,7 +247,7 @@ export const getTeamColor = (driver_number: number) => {
     // Williams
     case 55:
     case 23:
-      return "#005AFF";
+      return "#00A3E0";
     // Aston Martin
     case 14:
     case 18:
@@ -266,7 +267,7 @@ export const getTeamColor = (driver_number: number) => {
     // Racing Bulls
     case 6:
     case 30:
-      return "#1E41FF";
+      return "#e3e3e4";
     default:
       return "#1E293B";
   }
@@ -283,7 +284,7 @@ export const getConstructorTeamColor = (team_name: string) => {
     case "Scuderia Ferrari":
       return "#DC143C";
     case "Williams Racing":
-      return "#005AFF";
+      return "#00A3E0";
     case "Aston Martin F1 Team":
       return "#006F62";
     case "Haas F1 Team":
@@ -293,7 +294,7 @@ export const getConstructorTeamColor = (team_name: string) => {
     case "Alpine F1 Team":
       return "#FF009C";
     case "RB F1 Team":
-      return "#1E41FF";
+      return "#e3e3e4";
   }
 };
 
