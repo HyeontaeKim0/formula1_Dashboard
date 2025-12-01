@@ -2,6 +2,8 @@
 import McLarenCar from "@/assets/img/car/McLaren/McLaren_Car.webp";
 import MercedesCar from "@/assets/img/car/Mercedes/Mercedes_Car.webp";
 import RedBullCar from "@/assets/img/car/RedBull/RedBull_Car.webp";
+import WilliamsCar from "@/assets/img/car/Williams/Williams_Car.webp";
+import FerrariCar from "@/assets/img/car/Ferrari/Ferrari_Car.webp";
 
 // 모든 팀 로고
 import McLarenLogo from "@/assets/img/teamLogo/McLaren.webp";
@@ -21,8 +23,8 @@ import YukiTsunoda from "@/assets/img/driverProfile/RedBull/yuki.webp";
 import KimiAntonelli from "@/assets/img/podium/Kimi_Podium4.png";
 import GeorgeRussell from "@/assets/img/podium/Russell_Podium.png";
 import LandoNorris from "@/assets/img/podium/Norris_Podium.png";
-import OscarPiastri from "@/assets/img/driverProfile/McLaren/piastri.webp";
-import CarlosSainz from "@/assets/img/driverProfile/Williams/sainz.webp";
+import OscarPiastri from "@/assets/img/podium/Oscar_Podium.png";
+import CarlosSainz from "@/assets/img/podium/Saintz_Podium.png";
 import AlexAlbon from "@/assets/img/driverProfile/Williams/albon.webp";
 import LewisHamilton from "@/assets/img/driverProfile/Ferrari/hamilton.webp";
 import CharlesLeclerc from "@/assets/img/driverProfile/Ferrari/leclerc.webp";
@@ -44,7 +46,7 @@ export const getCircuitImageUrl = (circuit_name: string) => {
   switch (circuit_name) {
     case "lusail":
       return LusailCircuit.src;
-    case "yasMarina":
+    case "yas_marina":
       return YasMarinaCircuit.src;
     default:
       return "";
@@ -54,13 +56,20 @@ export const getCircuitImageUrl = (circuit_name: string) => {
 export const getCar = (driver_number: number) => {
   switch (driver_number) {
     case 4:
+    case 81:
       return McLarenCar.src;
     case 63:
-      return MercedesCar.src;
     case 12:
       return MercedesCar.src;
     case 1:
+    case 33:
       return RedBullCar.src;
+    case 55:
+      return WilliamsCar.src;
+    case 44:
+    case 16:
+      return FerrariCar.src;
+
     default:
       return "";
   }
