@@ -14,6 +14,8 @@ import { getLastestMeeting } from "@/lib/api/lastestMeeting/lastestMeeting";
 
 import type { LastestMeeting } from "@/lib/api/lastestMeeting/lastestMeeting";
 
+import MaxVerstappen from "@/assets/img/champion/champion_Max.png";
+
 import {
   getCar,
   getDriverName,
@@ -186,20 +188,37 @@ export default function Podium() {
     <div className="relative w-full">
       {/* 헤더 섹션 */}
       <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm">
-            <Trophy className="text-primary" size={24} />
+        {lastestMeeting?.circuit.country === "United Arab Emirates" ? (
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm">
+              <Trophy className="text-primary" size={24} />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold tracking-tight text-gray-600">
+                월드 챔피언 {lastestMeeting?.season}
+              </h3>
+              <p className="mt-1 text-sm font-medium text-gray-500">
+                {lastestMeeting?.circuit.country} ·{" "}
+                {lastestMeeting?.circuit.city}· Final Grand Prix
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-xl font-bold tracking-tight text-gray-600">
-              최근 레이스
-            </h3>
-            <p className="mt-1 text-sm font-medium text-gray-500">
-              {lastestMeeting?.circuit.country} · {lastestMeeting?.circuit.city}{" "}
-              그랑프리
-            </p>
+        ) : (
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm">
+              <Trophy className="text-primary" size={24} />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold tracking-tight text-gray-600">
+                최근 레이스
+              </h3>
+              <p className="mt-1 text-sm font-medium text-gray-500">
+                {lastestMeeting?.circuit.country} ·{" "}
+                {lastestMeeting?.circuit.city} 그랑프리
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* 캐러셀 컨테이너 */}
@@ -209,7 +228,10 @@ export default function Podium() {
           <div
             className="flex transition-transform duration-700 ease-out"
             style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
+              transform:
+                lastestMeeting?.circuit.country === "United Arab Emirates"
+                  ? "translateX(0%)"
+                  : `translateX(-${currentIndex * 100}%)`,
             }}
           >
             {podiumData.map((driver) => {
@@ -233,105 +255,123 @@ export default function Podium() {
                   >
                     {/* 메인 컨텐츠 */}
                     <div className="relative z-10 flex min-h-[500px] flex-col md:flex-row md:items-center md:justify-between px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[200px]">
-                      {/* 왼쪽: 텍스트 영역 */}
-                      <div className="flex flex-1 flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-15">
-                        <div className="space-y-4">
-                          {/* 드라이버 이름 - 작은 부분 */}
-                          {firstName && (
-                            <div className="text-2xl font-bold tracking-wide text-white/90 md:text-3xl">
-                              {firstName}
-                            </div>
-                          )}
-
-                          {/* 드라이버 이름 - 큰 부분 */}
-                          <div className="text-xl font-black leading-none tracking-tight text-white md:text-6xl lg:text-7xl">
-                            {lastName}
+                      {lastestMeeting?.circuit.country ===
+                      "United Arab Emirates" ? (
+                        <>
+                          <div className="flex flex-1 flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-15">
+                            <Image
+                              src={MaxVerstappen}
+                              alt="Max Verstappen"
+                              fill
+                              className="object-cover object-center"
+                              sizes="100vw"
+                              unoptimized
+                            />
                           </div>
-
-                          {/* 서브텍스트 */}
-                          <div className="mt-6 space-y-2">
-                            <div className="flex items-center gap-3">
-                              {driver.teamLogoUrl && (
-                                <div
-                                  className={`relative w-[50px] h-[50px] flex-shrink-0  ${
-                                    driver.team === "맥라렌"
-                                      ? "drop-shadow-[0_0_10px_rgba(0,0,0,0.4)]"
-                                      : ""
-                                  }`}
-                                >
-                                  <Image
-                                    src={driver.teamLogoUrl}
-                                    alt={driver.team}
-                                    fill
-                                    className={`object-contain ${
-                                      driver.team === "McLaren"
-                                        ? "scale-125"
-                                        : "scale-100"
-                                    }`}
-                                    sizes="40px"
-                                    unoptimized
-                                  />
+                        </>
+                      ) : (
+                        <>
+                          {/* 왼쪽: 텍스트 영역 */}
+                          <div className="flex flex-1 flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-15">
+                            <div className="space-y-4">
+                              {/* 드라이버 이름 - 작은 부분 */}
+                              {firstName && (
+                                <div className="text-2xl font-bold tracking-wide text-white/90 md:text-3xl">
+                                  {firstName}
                                 </div>
                               )}
-                              <div className="text-base font-medium text-white/70 md:text-lg">
-                                {driver.team}
+
+                              {/* 드라이버 이름 - 큰 부분 */}
+                              <div className="text-xl font-black leading-none tracking-tight text-white md:text-6xl lg:text-7xl">
+                                {lastName}
+                              </div>
+
+                              {/* 서브텍스트 */}
+                              <div className="mt-6 space-y-2">
+                                <div className="flex items-center gap-3">
+                                  {driver.teamLogoUrl && (
+                                    <div
+                                      className={`relative w-[50px] h-[50px] flex-shrink-0  ${
+                                        driver.team === "맥라렌"
+                                          ? "drop-shadow-[0_0_10px_rgba(0,0,0,0.4)]"
+                                          : ""
+                                      }`}
+                                    >
+                                      <Image
+                                        src={driver.teamLogoUrl}
+                                        alt={driver.team}
+                                        fill
+                                        className={`object-contain ${
+                                          driver.team === "McLaren"
+                                            ? "scale-125"
+                                            : "scale-100"
+                                        }`}
+                                        sizes="40px"
+                                        unoptimized
+                                      />
+                                    </div>
+                                  )}
+                                  <div className="text-base font-medium text-white/70 md:text-lg">
+                                    {driver.team}
+                                  </div>
+                                </div>
+                                {driver.carImageUrl && (
+                                  <div className="relative flex-shrink-0 w-full max-w-[400px] h-[100px] sm:h-[120px] md:h-[150px]">
+                                    <Image
+                                      src={driver.carImageUrl}
+                                      alt={driver.team}
+                                      fill
+                                      className="object-contain"
+                                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 400px"
+                                      unoptimized
+                                    />
+                                  </div>
+                                )}
                               </div>
                             </div>
-                            {driver.carImageUrl && (
-                              <div className="relative flex-shrink-0 w-full max-w-[400px] h-[100px] sm:h-[120px] md:h-[150px]">
-                                <Image
-                                  src={driver.carImageUrl}
-                                  alt={driver.team}
-                                  fill
-                                  className="object-contain"
-                                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 400px"
-                                  unoptimized
-                                />
+                          </div>
+
+                          {/* 오른쪽: 드라이버 이미지 */}
+                          <div className="relative flex items-end justify-end w-full md:w-2/5 mt-4 md:mt-0">
+                            {driver.imageUrl && (
+                              <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg">
+                                {/* 드라이버 이미지 */}
+                                <div className="relative p-2 sm:p-4 md:p-6 lg:p-8">
+                                  <div
+                                    className="relative aspect-[3/4] w-full overflow-hidden"
+                                    style={{
+                                      clipPath:
+                                        "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+                                    }}
+                                  >
+                                    <Image
+                                      src={driver.imageUrl}
+                                      alt={driver.driverName}
+                                      fill
+                                      className={`object-cover object-center ${
+                                        driver.imageUrl === KimiAntonelli.src
+                                          ? "scale-110"
+                                          : ""
+                                      }`}
+                                      sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 448px, 512px"
+                                      unoptimized
+                                    />
+                                    {/* 그라데이션 오버레이 */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                                  </div>
+
+                                  {/* 순위 번호 */}
+                                  <div className="absolute -left-2 sm:-left-3 md:-left-4 top-2 sm:top-3 md:top-4 z-20">
+                                    <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight text-white drop-shadow-2xl">
+                                      {driver.position}
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             )}
                           </div>
-                        </div>
-                      </div>
-
-                      {/* 오른쪽: 드라이버 이미지 */}
-                      <div className="relative flex items-end justify-end w-full md:w-2/5 mt-4 md:mt-0">
-                        {driver.imageUrl && (
-                          <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg">
-                            {/* 드라이버 이미지 */}
-                            <div className="relative p-2 sm:p-4 md:p-6 lg:p-8">
-                              <div
-                                className="relative aspect-[3/4] w-full overflow-hidden"
-                                style={{
-                                  clipPath:
-                                    "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
-                                }}
-                              >
-                                <Image
-                                  src={driver.imageUrl}
-                                  alt={driver.driverName}
-                                  fill
-                                  className={`object-cover object-center ${
-                                    driver.imageUrl === KimiAntonelli.src
-                                      ? "scale-110"
-                                      : ""
-                                  }`}
-                                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 448px, 512px"
-                                  unoptimized
-                                />
-                                {/* 그라데이션 오버레이 */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                              </div>
-
-                              {/* 순위 번호 */}
-                              <div className="absolute -left-2 sm:-left-3 md:-left-4 top-2 sm:top-3 md:top-4 z-20">
-                                <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight text-white drop-shadow-2xl">
-                                  {driver.position}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
