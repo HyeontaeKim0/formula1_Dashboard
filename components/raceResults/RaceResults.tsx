@@ -166,6 +166,7 @@ export default function RaceResults() {
         position: parsePosition(result.gridPosition, index),
         driverName: getDriverName(result.driver?.number) || "",
         driverCode: result.driver?.code || result.driver?.driverId || "",
+        time: result.time || "",
         driverNumber: result.driver?.number || "",
         team: getTeamName(result.driver?.number) || "",
       }))
@@ -176,10 +177,26 @@ export default function RaceResults() {
         position: parsePosition(result.gridPosition, index),
         driverName: getDriverName(result.driver?.number) || "",
         driverCode: result.driver?.code || result.driver?.driverId || "",
+        time: result.time || "",
         driverNumber: result.driver?.number || "",
         team: getTeamName(result.driver?.number) || "",
       }))
       .sort((a: any, b: any) => a.position - b.position) || [];
+
+  //  practice1Results, practice2Results, practice3Results의 time만 통합
+  const practiceResults = practice1Results.map((result) => {
+    const practice2Result = practice2Results.find(
+      (r) => r.driverNumber === result.driverNumber && r.time !== ""
+    );
+    const practice3Result = practice3Results.find(
+      (r) => r.driverNumber === result.driverNumber && r.time !== ""
+    );
+    return {
+      ...result,
+      time2: practice2Result?.time,
+      time3: practice3Result?.time,
+    };
+  });
 
   return (
     <div className="relative w-full">
@@ -198,7 +215,7 @@ export default function RaceResults() {
             view === "race"
               ? raceResults
               : view === "practice"
-              ? practice1Results
+              ? practiceResults
               : qualifyingResults
           }
           setHoveredRow={setHoveredRow}

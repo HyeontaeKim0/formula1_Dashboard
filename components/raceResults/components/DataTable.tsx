@@ -29,7 +29,7 @@ export default function DataTable({
 
   const getTableHeaders = () => {
     if (view === "practice") {
-      return ["순위", "드라이버", "시간", "랩"];
+      return ["순위", "드라이버", "FP1", "FP2", "FP3"];
     } else if (view === "sprint") {
       return ["순위", "드라이버", "시간", "랩", "포인트"];
     } else if (view === "qualifying") {
@@ -162,18 +162,43 @@ export default function DataTable({
                 </>
               ) : (
                 <>
-                  <td className="py-4 px-4">
-                    <div className="flex items-center space-x-1.5">
-                      <Clock size={14} className="text-gray-400" />
-                      <span className="text-sm font-mono font-medium">
-                        {result.time || "-"}
-                      </span>
-                    </div>
-                  </td>
                   {view === "practice" ? (
-                    ""
+                    <>
+                      <td className="py-4 px-1">
+                        <div className="flex items-center space-x-1.5">
+                          <Clock size={14} className="text-gray-400" />
+                          <span className="text-sm font-mono font-medium">
+                            {result.time || "-"}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-1">
+                        <div className="flex items-center space-x-1.5">
+                          <Clock size={14} className="text-gray-400" />
+                          <span className="text-sm font-mono font-medium">
+                            {result.time2 || "-"}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-1">
+                        <div className="flex items-center space-x-1.5">
+                          <Clock size={14} className="text-gray-400" />
+                          <span className="text-sm font-mono font-medium">
+                            {result.time3 || "-"}
+                          </span>
+                        </div>
+                      </td>
+                    </>
                   ) : (
                     <>
+                      <td className="py-4 px-4">
+                        <div className="flex items-center space-x-1.5">
+                          <Clock size={14} className="text-gray-400" />
+                          <span className="text-sm font-mono font-medium">
+                            {result.time || "-"}
+                          </span>
+                        </div>
+                      </td>
                       <td className="py-4 px-4 text-center text-sm text-gray-700 font-semibold">
                         {result.laps}
                       </td>
