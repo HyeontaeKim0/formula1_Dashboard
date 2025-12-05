@@ -47,6 +47,8 @@ export default function RaceResults() {
     "practice" | "sprint" | "qualifying" | "race"
   >("race");
 
+  console.log("view", view);
+
   // 레이스
   useEffect(() => {
     const fetchLastRaceResult = async () => {
