@@ -1,6 +1,9 @@
 import DriversSection from "@/components/driverSection/DriversSection";
 import { getDriversFromOpenF1, transformOpenF1Driver } from "@/lib/openf1";
 
+// 동적 렌더링 강제 (빌드 시 정적 생성 방지)
+export const dynamic = "force-dynamic";
+
 export default async function DriversPage() {
   // OpenF1 API에서 드라이버 데이터 가져오기
   const openF1Drivers = await getDriversFromOpenF1("latest");

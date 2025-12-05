@@ -199,12 +199,19 @@ export async function getDriversFromOpenF1(
   sessionKey: string = "latest"
 ): Promise<OpenF1Driver[]> {
   try {
+    // 타임아웃 설정 (10초)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
     const response = await fetch(
       `https://api.openf1.org/v1/drivers?session_key=${sessionKey}`,
       {
+        signal: controller.signal,
         next: { revalidate: 3600 }, // 1시간마다 재검증
       }
     );
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch drivers: ${response.statusText}`);
@@ -213,7 +220,11 @@ export async function getDriversFromOpenF1(
     const data: OpenF1Driver[] = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching drivers from OpenF1:", error);
+    if (error instanceof Error && error.name === "AbortError") {
+      console.error("Error fetching drivers from OpenF1: Request timeout");
+    } else {
+      console.error("Error fetching drivers from OpenF1:", error);
+    }
     return [];
   }
 }
