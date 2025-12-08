@@ -105,6 +105,8 @@ export default function UpcomingRacesType({
 
   return (
     <div>
+      {/* 데이터가 없을 경우 */}
+
       <div className="relative w-full">
         {/* 헤더 섹션 */}
 

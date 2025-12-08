@@ -86,7 +86,7 @@ export default function RaceTypeList({
       : raceType.defaultDaysUntil;
 
     // 일정이 없을 때 간소한 UI
-    if (!hasDate && daysUntil !== "--") {
+    if (!hasDate) {
       return (
         <div key={raceType.id} className="mt-3">
           <div className="rounded-xl border border-gray-100 bg-gray-50/50 py-3 px-4">

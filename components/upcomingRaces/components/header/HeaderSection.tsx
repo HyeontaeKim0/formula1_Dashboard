@@ -8,6 +8,8 @@ export default function HeaderSection({
 }) {
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  console.log("upcomingRacesApi", upcomingRacesApi);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -24,10 +26,17 @@ export default function HeaderSection({
           <h3 className="text-xl font-extrabold tracking-tight text-gray-900">
             다가오는 레이스
           </h3>
-          <p className="mt-1 text-sm font-medium text-gray-600">
-            {upcomingRacesApi?.race[0].circuit.city} ·{" "}
-            {upcomingRacesApi?.race[0].circuit.country} 그랑프리
-          </p>
+          {/* 데이터가 없을 경우 */}
+          {upcomingRacesApi === undefined ? (
+            <p className="mt-1 text-sm font-medium text-gray-600">
+              레이스 일정 데이터가 없습니다.
+            </p>
+          ) : (
+            <p className="mt-1 text-sm font-medium text-gray-600">
+              {upcomingRacesApi?.race[0].circuit.city} ·{" "}
+              {upcomingRacesApi?.race[0].circuit.country} 그랑프리
+            </p>
+          )}
         </div>
       </div>
       <div className="flex items-center gap-2">

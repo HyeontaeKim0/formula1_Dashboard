@@ -28,38 +28,60 @@ export default function CircuitSection({
           </div>
           <div>
             <p className="text-lg font-bold">
-              {getCircuitName(upcomingRacesApi?.race[0]?.circuit?.circuitId)}
+              {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
+                <p className=" text-gray-400 font-bold">Comming ...</p>
+              ) : (
+                getCircuitName(upcomingRacesApi?.race[0]?.circuit?.circuitId)
+              )}
             </p>
             <p className="text-[12px] font-medium text-gray-600">
-              {upcomingRacesApi?.race[0]?.circuit?.circuitName}
+              {upcomingRacesApi?.race[0]?.circuit?.circuitName === undefined ? (
+                <p className=" text-gray-400 font-bold">Soon ...</p>
+              ) : (
+                upcomingRacesApi?.race[0]?.circuit?.circuitName
+              )}
             </p>
           </div>
         </div>
-        <div className="w-full h-full flex items-center justify-center mt-10">
-          <Image
-            src={getCircuitImageUrl(
-              upcomingRacesApi?.race[0].circuit.circuitId as string
-            )}
-            alt={upcomingRacesApi?.race[0].circuit.circuitName}
-            width={400}
-            height={400}
-            className="object-cover object-center"
-          />
-        </div>
+        {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
+          <div className="w-full h-full flex items-center justify-center mt-10">
+            <p className=" text-gray-400 font-bold">Comming Soon ...</p>
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center mt-10">
+            <Image
+              src={getCircuitImageUrl(
+                upcomingRacesApi?.race[0].circuit.circuitId as string
+              )}
+              alt={upcomingRacesApi?.race[0].circuit.circuitName}
+              width={400}
+              height={400}
+              className="object-cover object-center"
+            />
+          </div>
+        )}
         <div className="mt-10 space-y-2">
-          <p className="text-sm text-gray-600">
-            서킷 길이 : {upcomingRacesApi?.race[0].circuit.circuitLength}
-          </p>
-          <p className="text-sm text-gray-600">
-            코너 수 : {upcomingRacesApi?.race[0].circuit.corners}
-          </p>
-          <p className="text-sm text-gray-600">
-            패스티스트 랩 기록 :{" "}
-            {getDriverChampionName(
-              upcomingRacesApi?.race[0].circuit.fastestLapDriverId as string
-            )}{" "}
-            / {upcomingRacesApi?.race[0].circuit.fastestLapYear}
-          </p>
+          {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
+            <div className="w-full h-full flex items-center justify-center mt-10">
+              <p className=" text-gray-400 font-bold">Comming Soon ...</p>
+            </div>
+          ) : (
+            <>
+              <p className="text-sm text-gray-600">
+                서킷 길이 : {upcomingRacesApi?.race[0].circuit.circuitLength}
+              </p>
+              <p className="text-sm text-gray-600">
+                코너 수 : {upcomingRacesApi?.race[0].circuit.corners}
+              </p>
+              <p className="text-sm text-gray-600">
+                패스티스트 랩 기록 :{" "}
+                {getDriverChampionName(
+                  upcomingRacesApi?.race[0].circuit.fastestLapDriverId as string
+                )}{" "}
+                / {upcomingRacesApi?.race[0].circuit.fastestLapYear}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
