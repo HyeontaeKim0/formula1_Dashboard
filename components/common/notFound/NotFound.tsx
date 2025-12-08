@@ -1,5 +1,5 @@
 import { Loader } from "lucide-react";
-import NotFoundIcon from "../../assets/img/error/notFound.png";
+import NotFoundIcon from "../../../assets/img/error/notFound.png";
 export default function NotFound({ text }: { text: string }) {
   return (
     <div className="flex flex-col items-center justify-center space-x-2 mt-10">

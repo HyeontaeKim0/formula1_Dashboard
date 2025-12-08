@@ -2,7 +2,7 @@ import type { DriverResult } from "@/lib/types/types";
 import { getTeamLogoUrl } from "@/lib/utils/driverUtils";
 import { Trophy, Award, Clock, Loader } from "lucide-react";
 
-import NotFound from "../../notFound/NotFound";
+import NotFound from "../../../common/notFound/NotFound";
 export default function DataTable({
   raceResults,
   setHoveredRow,
