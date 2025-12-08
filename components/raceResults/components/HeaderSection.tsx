@@ -15,8 +15,7 @@ export default function HeaderSection({
           최근 레이스 결과
         </h3>
         <p className="mt-1 text-sm font-medium text-gray-600">
-          {lastRaceResult?.races?.circuit.city} ·{" "}
-          {lastRaceResult?.races?.circuit.country} 그랑프리
+          {lastRaceResult?.races?.circuit.city} · 그랑프리
         </p>
       </div>
     </div>

@@ -63,7 +63,10 @@ export const getCircuitName = (circuit_name: string) => {
       return "";
   }
 };
-export const getCar = (driver_number: number) => {
+export const getCar = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "";
+  }
   switch (driver_number) {
     case 4:
     case 81:
@@ -85,7 +88,10 @@ export const getCar = (driver_number: number) => {
   }
 };
 
-export const getDriverName = (driver_number: number) => {
+export const getDriverName = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "";
+  }
   switch (driver_number) {
     case 1:
       return "막스 베르스타펜";
@@ -186,7 +192,10 @@ export const getDriverChampionName = (driver_code: string) => {
   }
 };
 
-export const getTeamName = (driver_number: number) => {
+export const getTeamName = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "";
+  }
   switch (driver_number) {
     case 1:
       return "레드불";
@@ -235,7 +244,10 @@ export const getTeamName = (driver_number: number) => {
   }
 };
 
-export const getTeamColor = (driver_number: number) => {
+export const getTeamColor = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "#1E293B";
+  }
   switch (driver_number) {
     // Red Bull
     case 1:
@@ -308,7 +320,10 @@ export const getConstructorTeamColor = (team_name: string) => {
   }
 };
 
-export const getTeamLogoUrl = (driver_number: number) => {
+export const getTeamLogoUrl = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "";
+  }
   switch (driver_number) {
     case 1:
     case 22:
@@ -445,7 +460,10 @@ export const getDriverChampionImageUrl = (driver_code: string) => {
   }
 };
 
-export const getDriverImageUrl = (driver_number: number) => {
+export const getDriverImageUrl = (driver_number: number | null | undefined) => {
+  if (driver_number == null) {
+    return "";
+  }
   switch (driver_number) {
     case 1:
     case 33:
