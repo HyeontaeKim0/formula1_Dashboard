@@ -27,20 +27,20 @@ export default function CircuitSection({
             <CircuitBoard className="text-primary" size={20} />
           </div>
           <div>
-            <p className="text-lg font-bold">
-              {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
-                <p className=" text-gray-400 font-bold">Comming ...</p>
-              ) : (
-                getCircuitName(upcomingRacesApi?.race[0]?.circuit?.circuitId)
-              )}
-            </p>
-            <p className="text-[12px] font-medium text-gray-600">
-              {upcomingRacesApi?.race[0]?.circuit?.circuitName === undefined ? (
-                <p className=" text-gray-400 font-bold">Soon ...</p>
-              ) : (
-                upcomingRacesApi?.race[0]?.circuit?.circuitName
-              )}
-            </p>
+            {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
+              <p className="text-lg font-bold text-gray-400">Comming ...</p>
+            ) : (
+              <p className="text-lg font-bold">
+                {getCircuitName(upcomingRacesApi?.race[0]?.circuit?.circuitId)}
+              </p>
+            )}
+            {upcomingRacesApi?.race[0]?.circuit?.circuitName === undefined ? (
+              <p className="text-[12px] font-bold text-gray-400">Soon ...</p>
+            ) : (
+              <p className="text-[12px] font-medium text-gray-600">
+                {upcomingRacesApi?.race[0]?.circuit?.circuitName}
+              </p>
+            )}
           </div>
         </div>
         {upcomingRacesApi?.race[0]?.circuit?.circuitId === undefined ? (
